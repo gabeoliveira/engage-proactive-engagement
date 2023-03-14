@@ -1,0 +1,85 @@
+{
+    "description": "A New Flow",
+    "states": [
+      {
+        "name": "Trigger",
+        "type": "trigger",
+        "transitions": [
+          {
+            "event": "incomingMessage"
+          },
+          {
+            "event": "incomingCall"
+          },
+          {
+            "next": "connect_to_agent",
+            "event": "incomingConversationMessage"
+          },
+          {
+            "event": "incomingRequest"
+          },
+          {
+            "event": "incomingParent"
+          }
+        ],
+        "properties": {
+          "offset": {
+            "x": 0,
+            "y": 0
+          }
+        }
+      },
+      {
+        "name": "send_to_flex",
+        "type": "send-to-flex",
+        "transitions": [
+          {
+            "event": "callComplete"
+          },
+          {
+            "event": "failedToEnqueue"
+          },
+          {
+            "event": "callFailure"
+          }
+        ],
+        "properties": {
+          "offset": {
+            "x": 240,
+            "y": 560
+          },
+          "workflow": "WWxxx",
+          "channel": "TCxxx",
+          "attributes": "{\"name\": \"{{trigger.conversation.ChannelAttributes.name}}\", \"channelType\": \"{{trigger.conversation.ChannelAttributes.channel_type}}\", \"channelSid\": \"{{trigger.conversation.ChannelSid}}\"}"
+        }
+      },
+      {
+        "name": "connect_to_agent",
+        "type": "send-message",
+        "transitions": [
+          {
+            "next": "send_to_flex",
+            "event": "sent"
+          },
+          {
+            "event": "failed"
+          }
+        ],
+        "properties": {
+          "offset": {
+            "x": 230,
+            "y": 270
+          },
+          "service": "{{trigger.message.InstanceSid}}",
+          "channel": "{{trigger.message.ChannelSid}}",
+          "from": "{{flow.channel.address}}",
+          "to": "{{contact.channel.address}}",
+          "body": "Excelente! Já estamos te conectando com um de nossos representantes."
+        }
+      }
+    ],
+    "initial_state": "Trigger",
+    "flags": {
+      "allow_concurrent_calls": true
+    }
+  }
