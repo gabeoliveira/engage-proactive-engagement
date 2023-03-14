@@ -2,6 +2,19 @@
 
 # Table of Contents
 
+- [Twilio Engage Proactive Engagement](#twilio-engage-proactive-engagement)
+- [Table of Contents](#table-of-contents)
+- [Solution Description](#solution-description)
+- [Use Case](#use-case)
+  - [Business Value](#business-value)
+- [User Journey](#user-journey)
+- [How to Setup](#how-to-setup)
+  - [Pre-requisites](#pre-requisites)
+  - [Step-by-step](#step-by-step)
+    - [WhatsApp as a Destination](#whatsapp-as-a-destination)
+    - [Conversations as a Destination](#conversations-as-a-destination)
+
+
 # Solution Description
 
 This documentation describes how to connect users with agents proactively without manual intervention, using:
